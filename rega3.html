@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  <title>Para Ti, Con Amor ❤️</title>
+  <style>
+    /* ... (estilos CSS originales) ... */
+    * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(80deg, #a6c1ee, #fbc2eb);
+            color: #4a4a4a;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        h1{
+            word-spacing: 10px; /* Ajusta este valor para controlar la separación */
+        }
+
+        .floating-element {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .heart {
+            color: #ff8da1;
+            font-size: 24px;
+        }
+
+        .star {
+            color: #ffdb4d;
+            font-size: 20px;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(20deg);
+            }
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+
+            
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            text-align: center;
+            backdrop-filter: blur(2px);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+
+        .animated-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+            color: #ff69b4;
+        }
+
+        .animated-title span {
+            opacity: 0;
+            
+            animation: revealLetter 0.5s forwards;
+            transform: translateY(50px);
+        }
+        
+
+       
+
+
+        @keyframes revealLetter {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .romantic-message {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            margin: 2rem 0;
+            color: #666;
+        }
+        #galeria {
+
+            display: contents;
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center;
+        }
+
+        .gallery {
+            display: flex;
+            overflow-x: hidden;
+            max-width: 100%;
+            margin: 2rem 0;
+            gap: 1rem;
+
+            
+           
+        }
+
+        .gallery img {
+            width: 300px;
+            height: 200px;
+            border-radius: 10px;
+            object-fit: cover;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline {
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        .timeline-item {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .love-letter {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            max-width: 600px;
+        }
+
+        .surprise-button {
+            background: linear-gradient(45deg, #ff69b4, #ff8da1);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            margin: 2rem 0;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+        }
+
+        .surprise-button:hover {
+            transform: scale(1.1);
+        }
+
+        .confetti {
+            position: fixed;
+            z-index: 1000;
+        }
+
+        #canvas {
+         position: fixed;
+         top: 0;
+         left: 0;
+          
+          
+      
+        }
+
+        
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+
+        /* Media queries para pantallas pequeñas */
+        @media (max-width: 768px) {
+            .content {
+                padding: 1rem; 
+            }
+
+            .animated-title {
+                font-size: 2rem; 
+            }
+
+            .romantic-message {
+                font-size: 1.2rem; 
+            }
+
+            .gallery img {
+                width: 100%; 
+            }
+
+            .timeline {
+                max-width: 90%; 
+            }
+
+            .love-letter {
+                padding: 1.5rem; 
+            }
+        }
+
+    /* Ocultar las secciones excepto la primera */
+    section:not(:first-of-type) { 
+      display: none; 
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas"></canvas> 
+
+  <section id="inicio">
+    <div class="content">
+      <h1 class="animated-title" id="main-title">Para el amor de mi vida ❤️</h1>
+      <p class="romantic-message">Cada día es muy impotante, y en esta opcacion no va ser la exepcion  inmensamente feliz...</p>
+      <button class="next-button" onclick="goToSection('galeria')">Siguiente</button> 
+    </div>
+  </section>
+
+  <section id="galeria">
+    <div class="content">
+      <h2>Nuestros Momentos</h2>
+      <div class="gallery">
+        <img src="/api/placeholder/300/200" alt="Momento especial 1" loading="lazy">  
+        <img src="/api/placeholder/300/200" alt="Momento especial 2" loading="lazy">  
+        <img src="/api/placeholder/300/200" alt="Momento especial 3" loading="lazy">  
+      </div>
+      <button class="next-button" onclick="goToSection('timeline')">Siguiente</button> 
+    </div>
+  </section>
+
+  <section id="timeline">
+    <div class="content">
+      <h2>Nuestra Historia</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <h3>Primer Encuentro</h3>
+          <p>El día que el destino nos unió...</p>
+        </div>
+        <div class="timeline-item">
+          <h3>Primera Cita</h3>
+          <p>Cuando las mariposas comenzaron a volar...</p>
+        </div>
+        <div class="timeline-item">
+          <h3>Primer Viaje Juntos</h3>
+          <p>Descubriendo el mundo a tu lado...</p>
+        </div>
+      </div>
+      <button class="next-button" onclick="goToSection('carta')">Siguiente</button> 
+    </div>
+  </section>
+
+  <section id="carta">
+    <div class="content">
+      <div class="love-letter">
+        <h2>Mi Carta Para Ti</h2>
+        <p id="typed-text"></p> 
+      </div>
+      <button class="next-button" onclick="goToSection('sorpresa')">Siguiente</button> 
+    </div>
+  </section>
+
+  <section id="sorpresa">
+    <div class="content">
+      <button class="surprise-button" onclick="showSurprise()">¡Click para una sorpresa!</button> 
+    </div>
+  </section>
+
+  <script>
+    // ... (código JavaScript original) ... 
+
+        // Canvas for hearts, stars, and confetti
+        const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particles = Array(200).fill().map(() => {
+      const shapes = ['heart', 'star', 'circle'];
+      return {
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 4 + 2,
+        velocity: Math.random() * 0.5 + 0.2,
+        shape: shapes[Math.floor(Math.random() * shapes.length)],
+        color: `hsl(${Math.random() * 360}, 100%, 80%)`
+      };
+    });
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(particle => {
+        ctx.fillStyle = particle.color;
+        ctx.beginPath();
+        if (particle.shape === 'circle') {
+          ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+        } else if (particle.shape === 'star') {
+          drawStar(ctx, particle.x, particle.y, 5, particle.radius, particle.radius / 2);
+        } else if (particle.shape === 'heart') {
+          drawHeart(ctx, particle.x, particle.y, particle.radius);
+        }
+        ctx.fill();
+        particle.y += particle.velocity;
+        if (particle.y > canvas.height) particle.y = 0;
+      });
+      requestAnimationFrame(drawParticles);
+    }
+
+    function drawStar(ctx, x, y, spikes, outerRadius, innerRadius) {
+      let rot = Math.PI / 2 * 5;
+      let cx = x;
+      let cy = y;
+      let step = Math.PI / spikes;
+
+      ctx.beginPath();
+      ctx.moveTo(cx, cy - outerRadius);
+      for (let i = 0; i < spikes; i++) {
+        x = cx + Math.cos(rot) * outerRadius;
+        y = cy + Math.sin(rot) * outerRadius;
+        ctx.lineTo(x, y);
+        rot += step;
+
+        x = cx + Math.cos(rot) * innerRadius;
+        y = cy + Math.sin(rot) * innerRadius;
+        ctx.lineTo(x, y);
+        rot += step;
+      }
+      ctx.lineTo(cx, cy - outerRadius);
+      ctx.closePath();
+    }
+
+    function drawHeart(ctx, x, y, size) {
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.bezierCurveTo(x - size / 2, y - size / 2, x - size, y + size / 3, x, y + size);
+      ctx.bezierCurveTo(x + size, y + size / 3, x + size / 2, y - size / 2, x, y);
+      ctx.closePath();
+    }
+
+    function goToNextSection() {
+      document.querySelector('.message').style.display = 'none';
+      document.querySelector('.next-button').style.display = 'none';
+      const secondSection = document.getElementById('secondSection');
+      secondSection.classList.add('active');
+    }
+
+    drawParticles();
+        // Crear elementos flotantes (estrellas y corazones)
+        function createFloatingElements() {
+            const container = document.getElementById('floating-elements');
+            const elements = ['⭐', '❤️'];
+            const numberOfElements = 30;
+
+            for (let i = 0; i < numberOfElements; i++) {
+                const element = document.createElement('div');
+                element.className = 'floating-element';
+                element.textContent = elements[Math.floor(Math.random() * elements.length)];
+                element.style.left = `${Math.random() * 100}vw`;
+                element.style.top = `${Math.random() * 100}vh`;
+                element.style.animationDelay = `${Math.random() * 5}s`;
+                container.appendChild(element);
+            }
+        }
+
+        // Animación del título letra por letra
+        window.onload = function() {
+            const title = document.getElementById('main-title');
+            const text = title.textContent;
+            title.textContent = '';
+            
+            for (let i = 0; i < text.length; i++) {
+                const span = document.createElement('span');
+                span.textContent = text[i];
+                span.style.animationDelay = `${i * 0.1}s`;
+                title.appendChild(span);
+            }
+
+            createFloatingElements();
+        };
+
+        // Efecto de escritura para la carta
+        const text = "Cada día me enamoro más de tu sonrisa, de tu forma de ser, de cada pequeño detalle que te hace única. Gracias por ser parte de mi vida y llenarla de amor y felicidad...";
+        let index = 0;
+
+        function typeWriter() {
+            if (index < text.length) {
+                document.getElementById("typed-text").innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typeWriter, 50);
+            }
+        }
+
+        // Confeti mejorado
+        function createConfetti() {
+            const colors = ['#ff69b4', '#ff8da1', '#ffb6c1', '#ffd700', '#87ceeb'];
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * window.innerWidth + 'px';
+            confetti.style.width = '10px';
+            confetti.style.height = '10px';
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.position = 'fixed';
+            confetti.style.top = '-20px';
+            confetti.style.animation = `confettiFall ${Math.random() * 2 + 3}s linear forwards`;
+            document.body.appendChild(confetti);
+
+            setTimeout(() => {
+                confetti.remove();
+            }, 5000);
+        }
+
+        function showSurprise() {
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    createConfetti();
+                }, i * 50);
+            }
+        }
+
+        // Observer para la carta
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    typeWriter();
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        observer.observe(document.querySelector('.love-letter'));
+
+    function goToSection(sectionId) {
+      // Ocultar la sección actual
+      const currentSection = document.querySelector('section:not([style*="display: none"])');
+      currentSection.style.display = 'none';
+
+      // Mostrar la siguiente sección
+      const nextSection = document.getElementById(sectionId);
+      nextSection.style.display = 'block'; 
+    }
+  </script>
+</body>
+</html>
